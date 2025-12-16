@@ -13,11 +13,14 @@ def main():
                         help="Bottom threshold angle (default: 90)")
     parser.add_argument("--rise", type=float, default=20.0,
                         help="Rise threshold for rep count (default: 20)")
+    parser.add_argument("--smooth", type=float, default=0.3,
+                        help="EMA smoothing factor 0.1-0.9 (lower=smoother, default: 0.3)")
     args = parser.parse_args()
     
     processor = VideoProcessor(
         bottom_threshold=args.bottom,
-        rise_threshold=args.rise
+        rise_threshold=args.rise,
+        ema_alpha=args.smooth
     )
     
     print(f"Processing: {args.input}")
