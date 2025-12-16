@@ -9,15 +9,15 @@ def main():
     parser.add_argument("--json", "-j", help="Output JSON results path")
     parser.add_argument("--side", choices=["left", "right"], default="left",
                         help="Which leg to analyze (default: left)")
-    parser.add_argument("--bottom", type=float, default=80.0,
-                        help="Bottom threshold angle (default: 80)")
-    parser.add_argument("--top", type=float, default=160.0,
-                        help="Top threshold angle (default: 160)")
+    parser.add_argument("--bottom", type=float, default=90.0,
+                        help="Bottom threshold angle (default: 90)")
+    parser.add_argument("--rise", type=float, default=20.0,
+                        help="Rise threshold for rep count (default: 20)")
     args = parser.parse_args()
     
     processor = VideoProcessor(
         bottom_threshold=args.bottom,
-        top_threshold=args.top
+        rise_threshold=args.rise
     )
     
     print(f"Processing: {args.input}")
