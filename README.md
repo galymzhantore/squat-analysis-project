@@ -15,6 +15,18 @@
 
 4. **Подсчёт повторений** — детекция локальных минимумов. Повторение засчитывается когда угол опускается ниже порога и затем поднимается на заданную величину.
 
+## Что произойдет, если человек отвернется или модель потеряет точку колена?
+
+```python
+# video_processor.py
+landmarks = self.detector.detect(frame_rgb)
+if landmarks:
+    # обрабатываем
+else:
+    results.append({"angle": None, "reps": self.counter.rep_count})
+```
+Если поза потеряна — не падает, записывает `null` и продолжает.
+
 ## Установка
 
 ```bash
@@ -48,3 +60,7 @@ docker run -v $(pwd):/app squat-analysis --input /app/video.mp4 --output /app/ou
 ```bash
 pytest tests/ -v
 ```
+
+## Референсы
+
+Видео: https://www.youtube.com/watch?v=txnwoJz-Rno
